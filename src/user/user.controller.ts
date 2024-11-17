@@ -1,14 +1,16 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
-
+import { Prisma } from '@prisma/client';
+import { DatabaseService } from 'src/database/database.service';
 
 @Controller('user')
 export class UserController {
+
   constructor(private readonly userService: UserService) {}
 
   @Post()
-  create() {
-    return this.userService.create();
+  create(@Body() createEmployeeDto: Prisma.UserCreateInput) {
+    return this.userService.create(createEmployeeDto);
   }
 
   @Get()
