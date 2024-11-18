@@ -29,6 +29,7 @@ export class UserService {
   }
 
   findOne(email: string) {
+    console.log("email"+email)
     return this.databaseService.user.findFirst({
       where: {
         email:email

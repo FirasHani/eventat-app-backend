@@ -11,13 +11,15 @@ export class AuthController {
   @Public()
   @Post('login')
   signIn(@Body() signInDto: Record<string, any>) {
-    return this.authService.signIn(signInDto.username, signInDto.password);
+    console.log("test "+signInDto.email)
+    return this.authService.signIn(signInDto.email,signInDto.username,signInDto.password);
   }
 
   @HttpCode(HttpStatus.OK)
   @Public()
   @Post('signUp')
   signUp(@Body() signUp: Record<string, any>) {
+    console.log("test "+signUp.email)
     return this.authService.signUp(signUp.email, signUp.name, signUp.password);
   }
 
