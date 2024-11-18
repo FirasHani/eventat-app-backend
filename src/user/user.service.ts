@@ -28,8 +28,13 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} user`;
+  findOne(name: string) {
+    return this.databaseService.user.findFirst({
+      where: {
+        name:name
+      }
+    }
+    );
   }
 
   update(id: number) {
