@@ -2,15 +2,17 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { UserService } from './user.service';
 import { Prisma } from '@prisma/client';
 import { DatabaseService } from 'src/database/database.service';
+import { Public } from '../auth/auth.guard';
 
 @Controller('user')
 export class UserController {
 
   constructor(private readonly userService: UserService) {}
 
+  @Public()
   @Post()
-  create(@Body() createEmployeeDto: Prisma.UserCreateInput) {
-    return this.userService.create(createEmployeeDto);
+  create(@Body() createUserDto: Prisma.UserCreateInput) {
+    return this.userService.create(createUserDto);
   }
 
   @Get()
@@ -18,8 +20,8 @@ export class UserController {
     return this.userService.findAll();
   }
 
-  @Get(':name')
-  findOne(@Param('name') name: string) {
+  @Get('user')
+  findOne(@Body() name: string) {
     return this.userService.findOne(name);
   }
 

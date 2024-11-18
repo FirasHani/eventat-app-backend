@@ -18,7 +18,7 @@ export class UserService {
       ...createEmployeeDto,
       password,
     };
-
+    console.log(userData.email)
     return this.databaseService.user.create({
       data:userData
     });
@@ -28,10 +28,10 @@ export class UserService {
     return `This action returns all user`;
   }
 
-  findOne(name: string) {
+  findOne(email: string) {
     return this.databaseService.user.findFirst({
       where: {
-        name:name
+        email:email
       }
     }
     );
