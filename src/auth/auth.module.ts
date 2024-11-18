@@ -5,6 +5,8 @@ import{ UserModule } from '../user/user.module';
 import { DatabaseModule } from 'src/database/database.module';
 import { jwtConstants } from './constants';
 import { JwtModule } from '@nestjs/jwt';
+import { APP_GUARD } from '@nestjs/core';
+import { AuthGuard } from './auth.guard';
 
 @Module({
   imports: [forwardRef(() => UserModule), DatabaseModule, 
@@ -15,7 +17,11 @@ import { JwtModule } from '@nestjs/jwt';
    }),
   ],
   controllers: [AuthController],
-  providers: [AuthService],
+  providers: [AuthService ,
+    {
+    provide: APP_GUARD,
+    useClass: AuthGuard,
+  },],
   exports: [AuthService],
 })
 export class AuthModule {}
