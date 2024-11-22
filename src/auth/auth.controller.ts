@@ -20,7 +20,7 @@ export class AuthController {
   @Post('signUp')
   signUp(@Body() signUp: Record<string, any>) {
     console.log("test "+signUp.email)
-    return this.authService.signUp(signUp.email, signUp.name, signUp.password);
+    return this.authService.signUp(signUp.email, signUp.name, signUp.password, signUp.roles);
   }
 
   @UseGuards(AuthGuard)

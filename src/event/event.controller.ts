@@ -1,15 +1,20 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Request  } from '@nestjs/common';
 import { EventService } from './event.service';
 import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
+import { Prisma } from '@prisma/client';
+import { Roles } from '../role/role.decorator';
+import { Role } from 'src/role/role.enum';
 
 @Controller('event')
 export class EventController {
   constructor(private readonly eventService: EventService) {}
 
   @Post()
-  create(@Body() createEventDto: CreateEventDto) {
-    return this.eventService.create(createEventDto);
+  @Roles(Role.User,Role.Admin)
+  create(@Body() createEventDto: Prisma.EventCreateInput, @Request() user) {
+    console.log(user.user.id)
+    return this.eventService.createEvent(createEventDto,user.user.id);
   }
 
   @Get()

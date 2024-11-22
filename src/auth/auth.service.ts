@@ -28,8 +28,9 @@ export class AuthService {
     email:string,
     name: string,
     password: string,
+    roles: []
   ): Promise<{ access_token: string }> {
-    const user = await this.usersService.create({email,name,password});
+    const user = await this.usersService.create({email,name,password},roles);
     
     const payload = { sub: user.id, username: user.name };
     return {

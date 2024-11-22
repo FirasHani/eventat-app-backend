@@ -1,7 +1,6 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
 import { UserService } from './user.service';
 import { Prisma } from '@prisma/client';
-import { DatabaseService } from 'src/database/database.service';
 import { Public } from '../auth/auth.guard';
 import { Roles } from '../role/role.decorator';
 import { Role } from 'src/role/role.enum';
@@ -11,11 +10,27 @@ export class UserController {
 
   constructor(private readonly userService: UserService) {}
 
-  @Public()
-  @Post()
-  create(@Body() createUserDto: Prisma.UserCreateInput) {
-    return this.userService.create(createUserDto);
-  }
+  // @Public()
+  // @Post()
+  // async create(@Body() createUserDto: any) {
+   
+  //   const userCreateInput: Prisma.UserCreateInput = {
+  //     email: createUserDto.email,
+  //     name: createUserDto.name,
+  //     password: createUserDto.password,
+  //     roles: {
+  //       create: [
+  //         {
+  //           name: createUserDto.role,
+  //         },
+  //       ],
+  //     },
+  //   };
+  //   console.log("userCreateInput")
+  //   console.log(userCreateInput)
+
+  //   return await this.userService.create(userCreateInput);
+  // }
 
   @Get("all")
   findAll() {
