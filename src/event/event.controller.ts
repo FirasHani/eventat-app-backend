@@ -11,8 +11,9 @@ export class EventController {
   constructor(private readonly eventService: EventService) {}
 
   @Post()
-  @Roles(Role.User,Role.Admin)
-  create(@Body() createEventDto: Prisma.EventCreateInput, @Request() user) {
+  @Roles(Role.Admin,Role.User) 
+  create(@Body() createEventDto: Prisma.EventCreateInput) {
+    let user
     console.log(user.user.id)
     return this.eventService.createEvent(createEventDto,user.user.id);
   }
