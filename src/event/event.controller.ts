@@ -12,10 +12,10 @@ export class EventController {
 
   @Post()
   @Roles(Role.Admin,Role.User) 
-  create(@Body() createEventDto: Prisma.EventCreateInput) {
-    let user
-    console.log(user.user.id)
-    return this.eventService.createEvent(createEventDto,user.user.id);
+  create(@Body() createEventDto: Prisma.EventCreateInput, @Request() user) {
+    console.log("awd")
+    console.log(user.user.user.id)
+    return this.eventService.createEvent(createEventDto,user.user.user.id);
   }
 
   @Get()

@@ -9,12 +9,12 @@ import { DatabaseService } from 'src/database/database.service';
 
   constructor(private readonly databaseService: DatabaseService) { }
 
-async createEvent(createEvent: Prisma.EventCreateInput,user:number) {
+async createEvent(createEvent: Prisma.EventCreateInput,userId:number) {
   return await this.databaseService.event.create({
     data: {
       event_name: createEvent.event_name,
       event_desc: createEvent.event_desc,
-      userId:user,
+      userId:userId,
       created_time: new Date(), 
     },
   });
