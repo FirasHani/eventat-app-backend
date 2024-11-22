@@ -3,6 +3,8 @@ import { UserService } from './user.service';
 import { Prisma } from '@prisma/client';
 import { DatabaseService } from 'src/database/database.service';
 import { Public } from '../auth/auth.guard';
+import { Roles } from '../role/role.decorator';
+import { Role } from 'src/role/role.enum';
 
 @Controller('user')
 export class UserController {
@@ -21,6 +23,7 @@ export class UserController {
   }
 
   @Get('user')
+  @Roles(Role.Admin,Role.User) 
   findOne(@Body() name: string) {
     return this.userService.findOne(name);
   }
