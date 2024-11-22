@@ -2,6 +2,7 @@ import { Body, Injectable } from '@nestjs/common';
 import { Prisma } from '@prisma/client';
 import { DatabaseService } from 'src/database/database.service';
 import * as bcrypt from 'bcrypt';
+import { Roles } from 'src/role/role.decorator';
 
 const saltOrRounds = 10;
 
@@ -14,13 +15,14 @@ export class UserService {
 
     const password = await bcrypt.hash(createEmployeeDto.password, saltOrRounds);
 
-    const userData = {
-      ...createEmployeeDto,
-      password,
-    };
-    console.log(userData.email)
     return this.databaseService.user.create({
-      data:userData
+      data:{
+        ...createEmployeeDto,
+        password,
+      roles: {
+        create: [{ name: 'admin' }], 
+      },
+    },
     });
   }
 
@@ -29,13 +31,16 @@ export class UserService {
   }
 
   findOne(email: string) {
-    console.log("email"+email)
+    
     return this.databaseService.user.findFirst({
       where: {
-        email:email
+        email: email,
+      },
+      include:{
+        roles:true
       }
-    }
-    );
+    });
+
   }
 
   update(id: number) {
