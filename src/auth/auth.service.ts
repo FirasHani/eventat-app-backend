@@ -14,6 +14,7 @@ export class AuthService {
     pass: string,
   ): Promise<{ access_token: string }> {
     const user = await this.usersService.findOne(email);
+
     const isMatch = await bcrypt.compare(pass, user.password);
     if (isMatch == false) {
       throw new UnauthorizedException();
@@ -25,15 +26,29 @@ export class AuthService {
   }
 
   async signUp(
-    email:string,
+    email: string,
     name: string,
     password: string,
+    roles: []
   ): Promise<{ access_token: string }> {
-    const user = await this.usersService.create({email,name,password});
     
-    const payload = { sub: user.id, username: user.name };
+    const user = await this.usersService.create({ email, name, password }, roles);
+
+    const userWithRoles = { 
+      ...user, 
+      roles: roles.map((role: any) => ({
+        id: role.id, 
+        test:role.id,
+        name: role.name, 
+        userId: user.id 
+      })) 
+    };
+
+    const payload = { user: userWithRoles };
+  
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
   }
+  
 }
