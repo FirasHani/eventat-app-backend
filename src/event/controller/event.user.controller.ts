@@ -14,7 +14,7 @@ export class EventUserController {
     @Roles(Role.User)
     joinEvent(@Param('id') id:string, @Request() user){
 
-          return this.eventUserService.joinEvent(+id,user.user.user.id);
+        return this.eventUserService.joinEvent(+id,user.user.user.id);
     }
 
 

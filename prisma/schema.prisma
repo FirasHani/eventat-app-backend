@@ -20,9 +20,9 @@ model User {
   name        String
   password    String
   roles       Role[]          @relation("UserRoles")
-  events      Event[]         @relation("UserEvents")  // This relates to events that the user has joined
+  events      Event[]         @relation("UserEvents") 
   comments    Comment[]       
-  joined_event Joined_Event[] // If needed, could be optional based on your use case
+  joined_event Joined_Event[] 
 }
 
 model Role {
