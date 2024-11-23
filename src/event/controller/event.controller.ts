@@ -1,9 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete, Request  } from '@nestjs/common';
-import { EventService } from './event.service';
-import { CreateEventDto } from './dto/create-event.dto';
-import { UpdateEventDto } from './dto/update-event.dto';
+import { EventService } from '../service/event.service';
 import { Prisma } from '@prisma/client';
-import { Roles } from '../role/role.decorator';
+import { Roles } from '../../role/role.decorator';
 import { Role } from 'src/role/role.enum';
 
 @Controller('event')
@@ -35,4 +33,6 @@ export class EventController {
   remove(@Param('id') id: string) {
     return this.eventService.remove(+id);
   }
+
+
 }
