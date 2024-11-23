@@ -3,6 +3,7 @@ import { CreateEventDto } from './dto/create-event.dto';
 import { UpdateEventDto } from './dto/update-event.dto';
 import { Prisma } from '@prisma/client';
 import { DatabaseService } from 'src/database/database.service';
+import e from 'express';
 
 @Injectable()
  export class EventService {
@@ -20,19 +21,44 @@ async createEvent(createEvent: Prisma.EventCreateInput,userId:number) {
   });
 }
 
-  findAll() {
-    return `This action returns all event`;
+ async findAll() {
+    const events = await this.databaseService.event.findMany();
+    if(events.length == 0){
+      return "events not found";
+    }
+    return events;
   }
 
-  findOne(id: number) {
-    return `This action returns a #${id} event`;
+ async findOne(id: number) {
+    const event = await this.databaseService.event.findFirst({
+      where: {
+          id
+      }
+    });
+    if(!event){
+      return "event not found";
+    }
+    return event;
   }
 
-  update(id: number, updateEventDto: UpdateEventDto) {
-    return `This action updates a #${id} event`;
+ async update(id: number, updateEventDto: Prisma.EventUpdateInput) {
+      const updatedEvent = await this.databaseService.event.update({
+          where:{
+            id
+          },
+          data:{
+            ...updateEventDto
+          }
+      })
+      return updatedEvent;
   }
 
-  remove(id: number) {
-    return `This action removes a #${id} event`;
+ async remove(id: number) {
+      await this.databaseService.event.delete({
+        where: {
+          id
+        }
+    })
+    return "event is deleted";
   }
 }

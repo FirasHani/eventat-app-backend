@@ -13,8 +13,6 @@ export class EventController {
   @Post()
   @Roles(Role.Admin,Role.User) 
   create(@Body() createEventDto: Prisma.EventCreateInput, @Request() user) {
-    console.log("awd")
-    console.log(user.user.user.id)
     return this.eventService.createEvent(createEventDto,user.user.user.id);
   }
 
@@ -29,7 +27,7 @@ export class EventController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updateEventDto: UpdateEventDto) {
+  update(@Param('id') id: string, @Body() updateEventDto: Prisma.EventUpdateInput) {
     return this.eventService.update(+id, updateEventDto);
   }
 
