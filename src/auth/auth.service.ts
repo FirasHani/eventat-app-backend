@@ -26,16 +26,29 @@ export class AuthService {
   }
 
   async signUp(
-    email:string,
+    email: string,
     name: string,
     password: string,
     roles: []
   ): Promise<{ access_token: string }> {
-    const user = await this.usersService.create({email,name,password},roles);
-    const payload = { user , roles };
-    console.log(payload)
+    
+    const user = await this.usersService.create({ email, name, password }, roles);
+
+    const userWithRoles = { 
+      ...user, 
+      roles: roles.map((role: any) => ({
+        id: role.id, 
+        test:role.id,
+        name: role.name, 
+        userId: user.id 
+      })) 
+    };
+
+    const payload = { user: userWithRoles };
+  
     return {
       access_token: await this.jwtService.signAsync(payload),
     };
   }
+  
 }
