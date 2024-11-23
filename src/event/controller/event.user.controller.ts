@@ -10,12 +10,18 @@ export class EventUserController {
 
     constructor (private readonly  eventUserService : EventUserService){ }
     
-    @Put(':id')
+    @Patch(':id')
     @Roles(Role.User)
-    joinEvent(@Param('id') id:string, @Request() user){
+    joinEvent(@Param('id') id:string, @Request() user) {
 
         return this.eventUserService.joinEvent(+id,user.user.user.id);
     }
 
+    @Delete(':id')
+    @Roles(Role.User)
+    leaveEvent(@Param('id') id:string, @Request() user) {
+
+        return this.eventUserService.leaveEvent(+id,user.user.user.id);
+    }
 
 } 
