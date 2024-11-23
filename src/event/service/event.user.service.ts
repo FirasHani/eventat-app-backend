@@ -10,8 +10,8 @@ export class EventUserService{
     async joinEvent(eventId: number, userId: number) {
         const existing = await this.databaseService.joined_Event.findFirst({
           where: { 
-            eventId:23, 
-            userId : 28
+            eventId, 
+            userId
         },
         });
       
@@ -21,8 +21,8 @@ export class EventUserService{
       
         await this.databaseService.joined_Event.create({
           data: { 
-             eventId:23,
-             userId:28
+             eventId,
+             userId
          },
         });
       

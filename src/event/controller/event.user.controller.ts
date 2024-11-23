@@ -13,7 +13,8 @@ export class EventUserController {
     @Put(':id')
     @Roles(Role.User)
     joinEvent(@Param('id') id:string, @Request() user){
-          return this.eventUserService.joinEvent(+id,user);
+
+          return this.eventUserService.joinEvent(+id,user.user.user.id);
     }
 
 
