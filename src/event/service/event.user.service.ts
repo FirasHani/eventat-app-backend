@@ -51,5 +51,19 @@ export class EventUserService{
         }
         return "User is not in event.";
       }
+
+      async showMyJoinedEvents(userId:number) {
+          const showMyJoinedEvents = await this.databaseService.joined_Event.findMany({
+            where:{
+              userId
+            }
+          })
+
+          if(!showMyJoinedEvents) {
+            return "You didn't join any event";
+          }
+
+          return showMyJoinedEvents;
+      }
       
 }

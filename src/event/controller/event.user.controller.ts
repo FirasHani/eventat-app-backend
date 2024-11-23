@@ -24,4 +24,10 @@ export class EventUserController {
         return this.eventUserService.leaveEvent(+id,user.user.user.id);
     }
 
+    @Get('/show-my-joined-events')
+    @Roles(Role.User)
+    showMyJoinedEvents(@Request() user) {
+        
+        return this.eventUserService.showMyJoinedEvents(user.user.user.id)
+    }
 } 
