@@ -34,5 +34,4 @@ export class EventController {
     return this.eventService.remove(+id);
   }
 
-
 }
