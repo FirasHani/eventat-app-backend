@@ -77,7 +77,7 @@ model Club {
   id           Int             @id @default(autoincrement())
   name         String
   events       Event[]
-  userMembers  User_Member[]
+  userMembers  User_Member[]   // This is your join table
 }
 
 model User_Member {
