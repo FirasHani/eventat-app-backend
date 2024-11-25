@@ -15,15 +15,15 @@ datasource db {
 }
 
 model User {
-  id          Int             @id @default(autoincrement())
-  email       String          @unique
-  name        String
-  password    String
-  roles       Role[]          @relation("UserRoles")
-  events      Event[]         @relation("UserEvents") 
-  comments    Comment[]       
-  joined_event Joined_Event[]
-  member        Club[] 
+  id            Int       @id @default(autoincrement())
+  email         String    @unique
+  name          String
+  password      String
+  roles         Role[]    @relation("UserRoles")
+  events        Event[]   @relation("UserEvents")
+  comments      Comment[]
+  joined_event  Joined_Event[]
+  userMembers  User_Member[]
 }
 
 model Role {
@@ -74,9 +74,21 @@ model Joined_Event {
 }
 
 model Club {
-   id        Int      @id @default(autoincrement())
-   name      String
-   memberId  Int[]
-   member    User @relation(fields: [memberId],references: [id])  
-   event     Event[]
+  id           Int             @id @default(autoincrement())
+  name         String
+  events       Event[]
+  userMembers  User_Member[]
+}
+
+model User_Member {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  clubId    Int
+  joinedAt  DateTime   @default(now())
+  isActive  Boolean    @default(true)
+
+  user      User       @relation(fields: [userId], references: [id])
+  club      Club       @relation(fields: [clubId], references: [id])
+
+  @@unique([userId, clubId]) 
 }
