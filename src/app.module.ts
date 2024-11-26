@@ -9,9 +9,10 @@ import { APP_GUARD } from '@nestjs/core';
 import { RolesGuard } from './role/role.guard';
 import { AuthGuard } from './auth/auth.guard';
 import { EventModule } from './event/event.module';
+import { ClubModule } from './club/club.module';
 
 @Module({
-  imports: [UserModule, DatabaseModule, AuthModule, RoleModule, EventModule],
+  imports: [UserModule, DatabaseModule, AuthModule, RoleModule, EventModule, ClubModule],
   controllers: [AppController],
   providers: [AppService,   
      {
