@@ -17,7 +17,7 @@ export class AuthController {
 
   @HttpCode(HttpStatus.OK)
   @Public()
-  @Post('signUp')
+  @Post('signup')
   signUp(@Body() signUp: Record<string, any>) {
     console.log("test "+signUp.email)
     return this.authService.signUp(signUp.email, signUp.name, signUp.password, signUp.roles);
