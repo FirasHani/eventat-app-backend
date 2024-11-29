@@ -1,7 +1,5 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete,Put, Request, Injectable, Req  } from '@nestjs/common';
-import { EventService } from '../service/event.service';
 import { EventUserService } from '../service/event.user.service';
-import { Prisma } from '@prisma/client';
 import { Roles } from '../../role/role.decorator';
 import { Role } from 'src/role/role.enum';
 

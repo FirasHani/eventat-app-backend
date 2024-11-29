@@ -76,6 +76,8 @@ model Joined_Event {
 model Club {
   id           Int             @id @default(autoincrement())
   name         String
+  desc         String
+  posters      String[]
   events       Event[]
   userMembers  User_Member[]   // This is your join table
 }
@@ -86,6 +88,7 @@ model User_Member {
   clubId    Int
   joinedAt  DateTime   @default(now())
   isActive  Boolean    @default(true)
+  isJoined  Boolean    @default(false)
 
   user      User       @relation(fields: [userId], references: [id])
   club      Club       @relation(fields: [clubId], references: [id])
