@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Request } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Request, Req } from '@nestjs/common';
 import { ClubService } from '../service/club.service';
 import { ClubUserService } from '../service/club.user.service';
 import { Prisma } from '@prisma/client';
@@ -14,22 +14,18 @@ export class ClubUserController {
   }
 
   @Get()
-  findAll() {
-    return this.clubService.findAll();
+  findMyClubs(@Request() user) {
+    return this.clubUserService.findMyClubs(user.user.user.id);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.clubService.findOne(+id);
+  findMyClub(@Param('id') id: string, @Request() user) {
+    return this.clubUserService.findMyClub(+id,user.user.user.id);
   }
 
-  @Patch(':id')
-  update(@Param('id') id: string, @Body() updateClubDto: Prisma.ClubUpdateInput) {
-    return this.clubService.update(+id, updateClubDto);
-  }
 
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.clubService.remove(+id);
+  @Patch('leave-club/:id')
+  leaveClub(@Param('id') id: string, @Request() user) {
+    return this.clubUserService.leaveClub(+id,user.user.user.id);
   }
 }
