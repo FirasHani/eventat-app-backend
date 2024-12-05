@@ -53,9 +53,13 @@ export class EventUserService{
       }
 
       async showMyJoinedEvents(userId:number) {
-          const showMyJoinedEvents = await this.databaseService.joined_Event.findMany({
+          const showMyJoinedEvents = await this.databaseService.event.findMany({
             where:{
-              userId
+              joined_users:{
+                some:{
+                  userId:userId,
+                }
+              }
             }
           })
 
