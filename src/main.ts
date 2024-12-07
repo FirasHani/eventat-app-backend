@@ -8,10 +8,11 @@ async function bootstrap() {
 
   // Add CORS using Express middleware
   app.use(cors({
-    origin: 'http://localhost:8081',
+    origin: ['http://localhost:8081', 'https://eventat-app-backend.vercel.app'], // Include your Vercel URL
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   }));
+  
 
 
   await app.listen(process.env.PORT ?? 3000);
