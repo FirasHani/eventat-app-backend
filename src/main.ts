@@ -20,7 +20,7 @@ async function createNestServer() {
 async function bootstrap() {
   const app = await createNestServer();
   await app.listen(process.env.PORT || 3000);
-  console.log(`Application is running on: http://localhost:${process.env.PORT || 3000}`);
+  console.log(`Application is running on: http://localhost:${process.env.PORT || 3001}`);
 }
 
 // Export the handler for Vercel
