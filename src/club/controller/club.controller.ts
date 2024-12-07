@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/commo
 import { ClubService } from '../service/club.service';
 import { Prisma } from '@prisma/client';
 import { Roles } from '../../role/role.decorator';
-import { Role } from 'src/role/role.enum';
+import { Role } from '../../role/role.enum';
 
 @Controller('club')
 export class ClubController {

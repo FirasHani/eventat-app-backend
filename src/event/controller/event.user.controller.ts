@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete,Put, Request, Injectable, Req  } from '@nestjs/common';
 import { EventUserService } from '../service/event.user.service';
 import { Roles } from '../../role/role.decorator';
-import { Role } from 'src/role/role.enum';
+import { Role } from '../../role/role.enum';
 
 @Controller('event-user')
 export class EventUserController {

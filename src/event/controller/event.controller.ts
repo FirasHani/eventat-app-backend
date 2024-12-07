@@ -2,7 +2,7 @@ import { Controller, Get, Post, Body, Patch, Param, Delete, Request  } from '@ne
 import { EventService } from '../service/event.service';
 import { Prisma } from '@prisma/client';
 import { Roles } from '../../role/role.decorator';
-import { Role } from 'src/role/role.enum';
+import { Role } from '../../role/role.enum';
 
 @Controller('event')
 export class EventController {

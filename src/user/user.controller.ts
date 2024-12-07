@@ -3,7 +3,7 @@ import { UserService } from './user.service';
 import { Prisma } from '@prisma/client';
 import { Public } from '../auth/auth.guard';
 import { Roles } from '../role/role.decorator';
-import { Role } from 'src/role/role.enum';
+import { Role } from '../role/role.enum';
  // ttest
 @Controller('user')
 export class UserController {
