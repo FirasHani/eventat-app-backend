@@ -40,7 +40,7 @@ export default async function handler(req: any, res: any) {
     // Add CORS middleware
     expressApp.use(
       cors({
-        origin: ['http://localhost:8081', 'https://your-vercel-app.vercel.app'],
+        origin: ['http://localhost:8081', 'https://eventat-app-backend.vercel.app'],
         methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
         credentials: true,
       })
