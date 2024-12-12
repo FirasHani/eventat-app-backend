@@ -69,5 +69,19 @@ export class EventUserService{
 
           return showMyJoinedEvents;
       }
+
+      async showMyCreatedEvents(userId:number) {
+        const showMyCreatedEvents = await this.databaseService.event.findMany({
+          where:{
+            userId
+            }
+        })
+
+        if(!showMyCreatedEvents) {
+          return "You didn't create any event";
+        }
+
+        return showMyCreatedEvents;
+    }
       
 }
