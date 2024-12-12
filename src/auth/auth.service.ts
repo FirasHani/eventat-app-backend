@@ -28,10 +28,13 @@ export class AuthService {
     email: string,
     name: string,
     password: string,
+    studentId:number,
+    phoneNumber:number,
+    major:string,
     roles: []
   ): Promise<{ access_token: string }> {
     
-    const user = await this.usersService.create({ email, name, password }, roles);
+    const user = await this.usersService.create({ email, name, password, studentId, phoneNumber, major }, roles);
 
     const userWithRoles = { 
       ...user, 
