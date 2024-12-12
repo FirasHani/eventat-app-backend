@@ -13,6 +13,12 @@ async createEvent(createEvent: Prisma.EventCreateInput,userId:number) {
       event_name: createEvent.event_name,
       event_desc: createEvent.event_desc,
       userId:userId,
+      event_date:createEvent.event_date,
+      faculty:createEvent.faculty,
+      floor:createEvent.floor,
+      room:createEvent.room,
+      image:createEvent.image,
+      posters:createEvent.posters,
       created_time: new Date(), 
     },
   });
