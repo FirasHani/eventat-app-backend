@@ -19,10 +19,10 @@ export class EventController {
     return this.eventService.findAll();
   }
 
-  @Get()
-  findByTag(@Query()) {
-    return this.eventService.findByTag();
-  }
+  // @Get()
+  // findByTag(@Query()) {
+  //   return this.eventService.findByTag();
+  // }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
