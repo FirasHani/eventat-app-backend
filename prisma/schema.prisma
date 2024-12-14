@@ -79,6 +79,10 @@ model Club {
   id          Int           @id @default(autoincrement())
   name        String
   desc        String
+  instagram   String?
+  whatsapp    String?
+  facebook    String?
+  linkedIn    String?
   posters     String[]
   userMembers User_Member[]
   events      Event[]       @relation("ClubToEvent")
