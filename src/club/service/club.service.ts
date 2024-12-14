@@ -26,9 +26,17 @@ async create(createClubDto: Prisma.ClubCreateInput) {
 
   findOne(id: number) {
     return this.databaseService.club.findUnique({
-      where:{
-        id
-      }
+      where: {
+        id,
+      },
+      include: {
+        userMembers:{
+          include:{
+            user:true
+          }
+        }
+         
+      },
     });
   }
 

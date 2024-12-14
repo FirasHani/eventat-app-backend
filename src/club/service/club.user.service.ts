@@ -18,33 +18,53 @@ export class ClubUserService {
   if(!findClub){
     return "Club was not found";
   }
-
+  
   const existing = await this.databaseService.club.findFirst({
     where: {
-      id: clubId, // Check if the club exists
+      id: clubId, 
       userMembers: {
         some: {
           userId,
           clubId,
-          isJoined: true, // Check if the user is already a member
+          isJoined: true, 
         },
       },
     }
   });
     
       if (existing) {
-        return "User already joined this club.";
+        return "User already joined this club. yoo";
       }
-    
-      await this.databaseService.user_Member.create({
-        data: { 
-           clubId,
-           userId,
-           isJoined:true
-       },
-      });
-    
-      return "User successfully joined the club.";
+
+
+      try {
+        await this.databaseService.club.update({
+          where: {
+            id: clubId,
+          },
+          data: {
+            membersCount: { increment: 1 },
+            userMembers: {
+              upsert: {
+                where: {
+                  userId_clubId: { userId, clubId },
+                },
+                create: {
+                  userId,
+                  isJoined: true,
+                },
+                update: {
+                  isJoined: true,
+                },
+              },
+            },
+          },
+        });
+        return "User successfully joined the club.";
+      } catch (error) {
+        console.error("Error while joining the club:", error);
+        throw new Error("Failed to join the club.");
+      }
     
   }
 
@@ -89,10 +109,9 @@ export class ClubUserService {
   }
 
   async leaveClub(clubId: number, userId: number) {
-    const existingRecord = await this.databaseService.user_Member.findFirst({
+    const existingRecord = await this.databaseService.club.findFirst({
       where: {
-        clubId,
-        userId,
+        id:clubId,
       },
     });
   
@@ -101,12 +120,29 @@ export class ClubUserService {
     }
   
 
-    const leaveClub = await this.databaseService.user_Member.update({
-      where: { id: existingRecord.id },
-      data: {
-        isJoined:false,
-      },
-    });
+    try {
+      const leaveClub = await this.databaseService.club.update({
+        where: { 
+          id: clubId,
+        },
+        data: {
+          membersCount: { decrement: 1 },
+          userMembers: {
+            update: {
+              where: { 
+                userId_clubId: { userId, clubId },
+              },
+              data: {
+                isJoined: false,
+              },
+            },
+          },
+        },
+      });
+      console.log('User successfully left the club:', leaveClub);
+    } catch (error) {
+      console.error('Error while leaving the club:', error);
+    }
   
     return "User left the club";
   }

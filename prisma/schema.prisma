@@ -76,13 +76,15 @@ model Joined_Event {
 }
 
 model Club {
-  id          Int           @id @default(autoincrement())
-  name        String
-  desc        String
-  instagram   String?
-  whatsapp    String?
-  facebook    String?
-  linkedIn    String?
+  id            Int           @id @default(autoincrement())
+  name          String
+  desc          String
+  instagram     String?
+  whatsapp      String?
+  facebook      String?
+  linkedIn      String?
+  eventsCount   Int?        @default(0)
+  membersCount  Int?        @default(0)
   posters     String[]
   userMembers User_Member[]
   events      Event[]       @relation("ClubToEvent")
