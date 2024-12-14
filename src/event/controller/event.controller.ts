@@ -1,4 +1,4 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete, Request  } from '@nestjs/common';
+import { Controller, Get, Post, Body, Patch, Param, Delete, Request, Query  } from '@nestjs/common';
 import { EventService } from '../service/event.service';
 import { Prisma } from '@prisma/client';
 import { Roles } from '../../role/role.decorator';
@@ -17,6 +17,11 @@ export class EventController {
   @Get()
   findAll() {
     return this.eventService.findAll();
+  }
+
+  @Get()
+  findByTag(@Query()) {
+    return this.eventService.findByTag();
   }
 
   @Get(':id')
