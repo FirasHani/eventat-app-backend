@@ -21,6 +21,7 @@ model User {
   joined_event Joined_Event[]
   roles        Role[]         @relation("UserRoles")
   userMembers  User_Member[]
+  clubs        Club_Owners[]       
 }
 
 model Role {
@@ -45,7 +46,8 @@ model Event {
   comments     Comment[]
   user         User           @relation("UserEvents", fields: [userId], references: [id])
   joined_users Joined_Event[] @relation("JoinedEventToEvent")
-  club         Club[]         @relation("ClubToEvent")
+  clubId       Int?
+  club         Club?           @relation("ClubToEvent", fields: [clubId], references: [id])
   tags         Tag[]          @relation("EventToTag")
 }
 
@@ -85,9 +87,10 @@ model Club {
   linkedIn      String?
   eventsCount   Int?        @default(0)
   membersCount  Int?        @default(0)
-  posters     String[]
-  userMembers User_Member[]
-  events      Event[]       @relation("ClubToEvent")
+  posters       String[]
+  userMembers   User_Member[] 
+  events        Event[]        @relation("ClubToEvent") 
+  owners        Club_Owners[]       
 }
 
 model User_Member {
@@ -99,6 +102,16 @@ model User_Member {
   isJoined Boolean  @default(false)
   club     Club     @relation(fields: [clubId], references: [id])
   user     User     @relation(fields: [userId], references: [id])
+
+  @@unique([userId, clubId])
+}
+
+model Club_Owners { 
+  id     Int  @id @default(autoincrement())
+  userId Int  
+  clubId Int
+  user   User @relation(fields: [userId], references: [id])
+  club   Club @relation(fields: [clubId], references: [id])
 
   @@unique([userId, clubId])
 }
