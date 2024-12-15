@@ -70,6 +70,24 @@ export class EventUserService{
           return showMyJoinedEvents;
       }
 
+    
+      async checkIfUserJoinedEvent(eventId,userId) {
+        const existing = await this.databaseService.joined_Event.findFirst({
+          where: { 
+            eventId, 
+            userId,
+          },
+        });
+
+        //is joined
+        if (existing) {
+          return true;
+        }
+        
+        //not joined
+        return false;
+      }
+      
       async showMyCreatedEvents(userId:number) {
         const showMyCreatedEvents = await this.databaseService.event.findMany({
           where:{
@@ -83,5 +101,7 @@ export class EventUserService{
 
         return showMyCreatedEvents;
     }
+
+  
       
 }

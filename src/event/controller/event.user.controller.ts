@@ -29,10 +29,21 @@ export class EventUserController {
         return this.eventUserService.showMyJoinedEvents(user.user.user.id)
     }
 
+      @Get('/joined/:eventId')
+      checkIfUserJoinedEvent(
+      @Param('eventId') eventId: string,
+      @Request() user
+    ) {
+      return this.eventUserService.checkIfUserJoinedEvent(+eventId, user.user.user.id);
+      
+    }
+
     @Get('/show-my-created-events')
     @Roles(Role.User)
     showMyCreatedEvents(@Request() user) {
         
         return this.eventUserService.showMyCreatedEvents(user.user.user.id)
     }
+
+
 } 
