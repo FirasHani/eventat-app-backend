@@ -49,8 +49,8 @@ export class ClubEventService {
             floor: createEvent.floor || null,
             room: createEvent.room || null,
             image: createEvent.image || null,
-            club: { connect: { id: clubId } }, // Proper nested relation for club
-            user: { connect: { id: userId } }, // Proper nested relation for user
+            club: { connect: { id: clubId } }, 
+            user: { connect: { id: userId } },
 
           },
         });
@@ -63,6 +63,45 @@ export class ClubEventService {
 
       }
 
+
+  async showClubEvents (clubId:number){
+    const showEvents = await this.databaseService.club.findFirst({
+          where: {
+            id:clubId
+          },
+            include:{
+              events:true
+            }          
+    });
+
+      if(showEvents.events.length === 0) {
+        return "This club has no events yet";
+      }
+
+      return showEvents.events;
+  }
+  
+  async showClubEvent (clubId:number, eventId:number) {
+    const showOneEvent = await this.databaseService.club.findFirst({
+      where: {
+        id: clubId,
+      },
+      include: {
+        events: {
+          where: {
+            id: eventId,
+          },
+        },
+      },
+    });
+
+    if(showOneEvent.events.length === 0) {
+      return "No events is shown";
+    }
+
+    return showOneEvent.events;
+
+  }
     }
   
 

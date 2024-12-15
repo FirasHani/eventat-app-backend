@@ -22,4 +22,16 @@ export class ClubEventController {
     return this.clubEventService.ownerCreateEvent(createEvent,user.user.user.id,+clubId);
   }
 
+  @Roles(Role.User)
+  @Get(':clubId')
+  showClubEvents(@Param('clubId') clubId:string){
+    return this.clubEventService.showClubEvents(+clubId);
+  }
+
+  // Better not to use it.
+  @Roles(Role.User)
+  @Get(':clubId/:eventId')
+  showClubEvent(@Param('clubId') clubId:string, @Param('eventId') eventId:string){
+    return this.clubEventService.showClubEvent(+clubId,+eventId);
+  }
 }
