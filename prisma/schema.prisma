@@ -45,6 +45,7 @@ model Event {
   userId       Int
   comments     Comment[]
   user         User           @relation("UserEvents", fields: [userId], references: [id])
+  createrName  String?
   joined_users Joined_Event[] @relation("JoinedEventToEvent")
   clubId       Int?
   club         Club?           @relation("ClubToEvent", fields: [clubId], references: [id])

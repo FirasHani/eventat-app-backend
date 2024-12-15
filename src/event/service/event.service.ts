@@ -7,9 +7,11 @@ import { DatabaseService } from 'src/database/database.service';
 
   constructor(private readonly databaseService: DatabaseService) { }
 
-async createEvent(createEvent: Prisma.EventCreateInput,userId:number) {
+async createEvent(createEvent: Prisma.EventCreateInput,userId:number, creatorName:string) {
+
   return await this.databaseService.event.create({
     data: {
+      createrName:creatorName,
       event_name: createEvent.event_name,
       event_desc: createEvent.event_desc,
       posters: createEvent.posters || [],

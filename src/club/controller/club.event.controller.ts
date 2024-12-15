@@ -15,7 +15,6 @@ export class ClubEventController {
     return this.clubEventService.clubsOwner(user.user.user.id);
   }
 
-
   @Roles(Role.User,Role.Admin)
   @Post(':clubId')
   ownerCreateEvent(@Body() createEvent: Prisma.EventCreateInput, @Request() user, @Param('clubId') clubId:string) {
@@ -24,14 +23,15 @@ export class ClubEventController {
 
   @Roles(Role.User)
   @Get(':clubId')
-  showClubEvents(@Param('clubId') clubId:string){
+  showClubEvents(@Param('clubId') clubId:string) {
     return this.clubEventService.showClubEvents(+clubId);
   }
 
   // Better not to use it.
   @Roles(Role.User)
   @Get(':clubId/:eventId')
-  showClubEvent(@Param('clubId') clubId:string, @Param('eventId') eventId:string){
+  showClubEvent(@Param('clubId') clubId:string, @Param('eventId') eventId:string) {
     return this.clubEventService.showClubEvent(+clubId,+eventId);
   }
+
 }
