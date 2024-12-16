@@ -19,8 +19,8 @@ export class AuthController {
   @Post('signup')
   signUp(@Body() signUp: Record<string, any>) {
     return this.authService.signUp(
-       signUp.email, signUp.name, signUp.password,
-       signUp.roles, signUp.phoneNumber, signUp.major, signUp.studentId);
+      signUp.email, signUp.name, signUp.password,
+      signUp.studentId, signUp.phoneNumber, signUp.major, signUp.roles);
   }
 
   @UseGuards(AuthGuard)
