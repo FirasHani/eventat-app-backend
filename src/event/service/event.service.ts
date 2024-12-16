@@ -37,6 +37,9 @@ async createEvent(createEvent: Prisma.EventCreateInput,userId:number, creatorNam
     const event = await this.databaseService.event.findFirst({
       where: {
           id
+      },
+      include:{
+        joined_users:true
       }
     });
     if(!event){
