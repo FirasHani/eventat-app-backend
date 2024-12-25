@@ -22,8 +22,8 @@
     "test:e2e": "jest --config ./test/jest-e2e.json"
   },
   "engines": {
-    "node": "18.x"
-  },
+  "node": "18.x"
+    },
   "dependencies": {
     "@nestjs/common": "^10.0.0",
     "@nestjs/config": "^3.3.0",
@@ -36,7 +36,6 @@
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "dotenv-cli": "^7.4.4",
-    "moment": "^2.30.1",
     "node-modules": "^1.0.1",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1"
