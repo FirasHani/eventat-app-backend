@@ -11,7 +11,7 @@ async createEvent(createEvent: Prisma.EventCreateInput,userId:number, creatorNam
 
   return await this.databaseService.event.create({
     data: {
-      createrName:creatorName,
+      creatorName:creatorName,
       event_name: createEvent.event_name,
       event_desc: createEvent.event_desc,
       posters: createEvent.posters || [],

@@ -10,9 +10,10 @@ import { RolesGuard } from './role/role.guard';
 import { AuthGuard } from './auth/auth.guard';
 import { EventModule } from './event/event.module';
 import { ClubModule } from './club/club.module';
+import { CommentModule } from './comment/comment.module';
 
 @Module({
-  imports: [UserModule, DatabaseModule, AuthModule, RoleModule, EventModule, ClubModule],
+  imports: [UserModule, DatabaseModule, AuthModule, RoleModule, EventModule, ClubModule, CommentModule],
   controllers: [AppController],
   providers: [AppService,   
      {
