@@ -22,6 +22,19 @@ export class CommentService {
     return `Comment created: ${JSON.stringify(comment)}`;
   }
 
+  async getCommentsByEvent(eventId: number) {
+    const comments = await this.databaseService.comment.findMany({
+      where: { eventId: eventId },
+    });
+  
+    if (!comments || comments.length === 0) {
+      return 'No comments found for this event.';
+    }
+  
+    return comments;
+  }
+  
+
   async updateComment(commentId: number, updateComment: Prisma.CommentUpdateInput) {
     const comment = await this.databaseService.comment.update({
       where: { id: commentId },

@@ -18,6 +18,12 @@ export class CommentController {
     return this.commentService.createComment(createComment, user.user.user.id, user.user.user.name, +eventId);
   }
 
+  @Get(':eventId')
+  @Roles(Role.Admin, Role.User)
+  getComments(@Param('eventId') eventId: number) {
+    return this.commentService.getCommentsByEvent(+eventId);
+  }
+
   @Patch(':commentId')
   @Roles(Role.Admin, Role.User)
   update(
