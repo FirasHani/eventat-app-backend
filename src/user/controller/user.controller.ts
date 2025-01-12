@@ -1,9 +1,9 @@
 import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
-import { UserService } from './user.service';
+import { UserService } from '../service/user.service';
 import { Prisma } from '@prisma/client';
-import { Public } from '../auth/auth.guard';
-import { Roles } from '../role/role.decorator';
-import { Role } from '../role/role.enum';
+import { Public } from '../../auth/auth.guard';
+import { Roles } from '../../role/role.decorator';
+import { Role } from '../../role/role.enum';
  // ttest
 @Controller('user')
 export class UserController {

@@ -9,19 +9,35 @@ datasource db {
 }
 
 model User {
-  id           Int            @id @default(autoincrement())
-  email        String         @unique
-  name         String
-  password     String
-  studentId    Int?
-  major        String?
-  phoneNumber  Int?
-  comments     Comment[]
-  events       Event[]        @relation("UserEvents")
-  joined_event Joined_Event[]
-  roles        Role[]         @relation("UserRoles")
-  userMembers  User_Member[]
-  clubs        Club_Owners[]       
+  id                 Int              @id @default(autoincrement())
+  email              String           @unique
+  name               String
+  password           String
+  studentId          Int?
+  major              String?
+  phoneNumber        Int?
+  comments           Comment[]
+  events             Event[]          @relation("UserEvents")
+  joined_event       Joined_Event[]
+  roles              Role[]           @relation("UserRoles")
+  userMembers        User_Member[]
+  clubs              Club_Owners[]
+  
+  sentRequests       FriendRequest[]  @relation("SentRequests")
+  receivedRequests   FriendRequest[]  @relation("ReceivedRequests")
+
+  friends            User[]           @relation("UserFriends") 
+  friendOf          User[]            @relation("UserFriends") 
+}
+
+model FriendRequest {
+  id         Int      @id @default(autoincrement())
+  senderId   Int
+  sender     User     @relation("SentRequests", fields: [senderId], references: [id])
+  receiverId Int
+  receiver   User     @relation("ReceivedRequests", fields: [receiverId], references: [id])
+  status     String   @default("pending") // 'pending', 'accepted', 'rejected'
+  createdAt  DateTime @default(now())
 }
 
 model Role {
