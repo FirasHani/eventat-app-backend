@@ -26,9 +26,6 @@ export class UserService {
 
   findAll() {
     return this.databaseService.user.findMany({
-      include:{
-        roles:true
-      }
     });
   }
 
