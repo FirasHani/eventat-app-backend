@@ -25,7 +25,11 @@ export class UserService {
   }
 
   findAll() {
-    return `This action returns all user`;
+    return this.databaseService.user.findMany({
+      include:{
+        roles:true
+      }
+    });
   }
 
   findOne(email: string) {
