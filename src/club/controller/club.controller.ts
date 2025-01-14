@@ -8,13 +8,11 @@ import { Role } from '../../role/role.enum';
 export class ClubController {
   constructor(private readonly clubService: ClubService) {}
 
-  @Roles(Role.User,Role.Admin)
   @Post()
   create(@Body() createClubDto: Prisma.ClubCreateInput) {
     return this.clubService.create(createClubDto);
   }
 
-  @Roles(Role.User,Role.Admin)
   @Get()
   findAll() {
     return this.clubService.findAll();
