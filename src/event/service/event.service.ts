@@ -31,7 +31,8 @@ async createEvent(createEvent: Prisma.EventCreateInput,userId:number, creatorNam
  async findAll() {
     const events = await this.databaseService.event.findMany({
       include: {
-        joined_users:true
+        joined_users:true,
+        user:true,
       }
     });
     if(events.length == 0){
