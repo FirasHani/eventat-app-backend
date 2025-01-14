@@ -9,26 +9,22 @@ export class ClubEventController {
   constructor(private readonly clubEventService: ClubEventService) {}
 
 
-  @Roles(Role.User,Role.Admin)
   @Get()
   clubsOwner(@Request() user){
     return this.clubEventService.clubsOwner(user.user.user.id);
   }
 
-  @Roles(Role.User,Role.Admin)
   @Post(':clubId')
   ownerCreateEvent(@Body() createEvent: Prisma.EventCreateInput, @Request() user, @Param('clubId') clubId:string) {
     return this.clubEventService.ownerCreateEvent(createEvent,user.user.user.id,+clubId);
   }
 
-  @Roles(Role.User)
   @Get(':clubId')
   showClubEvents(@Param('clubId') clubId:string) {
     return this.clubEventService.showClubEvents(+clubId);
   }
 
   // Better not to use it.
-  @Roles(Role.User)
   @Get(':clubId/:eventId')
   showClubEvent(@Param('clubId') clubId:string, @Param('eventId') eventId:string) {
     return this.clubEventService.showClubEvent(+clubId,+eventId);
