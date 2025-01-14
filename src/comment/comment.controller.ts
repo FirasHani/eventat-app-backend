@@ -9,7 +9,6 @@ export class CommentController {
   constructor(private readonly commentService: CommentService) {}
 
   @Post(':eventId')
-  @Roles(Role.User)
   create(
     @Body() createComment: Prisma.CommentCreateInput,
     @Request() user,
@@ -19,13 +18,11 @@ export class CommentController {
   }
 
   @Get(':eventId')
-  @Roles( Role.User)
   getComments(@Param('eventId') eventId: number) {
     return this.commentService.getCommentsByEvent(+eventId);
   }
 
   @Patch(':commentId')
-  @Roles( Role.User)
   update(
     @Param('commentId') commentId: number,
     @Body() updateComment: Prisma.CommentUpdateInput,
@@ -34,7 +31,6 @@ export class CommentController {
   }
 
   @Delete(':commentId')
-  @Roles( Role.User)
   delete(@Param('commentId') commentId: number) {
     return this.commentService.deleteComment(+commentId);
   }
