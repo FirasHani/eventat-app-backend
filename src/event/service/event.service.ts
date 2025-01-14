@@ -46,7 +46,8 @@ async createEvent(createEvent: Prisma.EventCreateInput,userId:number, creatorNam
           id
       },
       include:{
-        joined_users:true
+        joined_users:true,
+        club:true
       }
     });
     if(!event){
