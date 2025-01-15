@@ -13,6 +13,7 @@ model User {
   email              String           @unique
   name               String
   password           String
+  image              String?
   studentId          Int?
   major              String?
   phoneNumber        Int?
