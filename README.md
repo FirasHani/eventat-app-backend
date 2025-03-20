@@ -1,100 +1,90 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# Event App
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+A mobile application built with TypeScript and React Native to help users discover, manage, and attend events. Whether you're looking for local meetups, concerts, or conferences, this app provides an easy-to-use interface to keep track of events in your area.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+## Features
 
-## Description
+- **Event Discovery**: Find events near you based on your interests and location.
+- **Event Details**: View detailed information including venue, date, time, and description.
+- **RSVP to Events**: Easily RSVP to events and add them to your personal calendar.
+- **Event Notifications**: Get notified about upcoming events and changes to your RSVP status.
+- **User Profiles**: Create and manage your user profile, including favorite events and past attendance.
+- **Interactive Maps**: View event locations on an interactive map to get directions.
+- **Dark Mode Support**: Switch between light and dark modes for a more personalized experience.
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## Tech Stack
 
-## Project setup
+- **React Native**: For building native mobile applications using JavaScript and React.
+- **TypeScript**: A statically typed superset of JavaScript, offering improved code quality and maintainability.
+- **Redux**: For managing the global state of the app.
+- **React Navigation**: For navigating between screens in the app.
+- **Axios**: For making HTTP requests to external APIs to fetch event data.
+- **React Native Maps**: For displaying event locations on an interactive map.
+- **Firebase**: For user authentication and storing event data in real-time.
 
-```bash
-$ npm install
-```
+## Installation
 
-## Compile and run the project
+To run this project locally, follow these steps:
 
-```bash
-# development
-$ npm run start
+### Prerequisites
 
-# watch mode
-$ npm run start:dev
+Make sure you have the following installed on your machine:
+- Node.js
+- npm or Yarn
+- React Native CLI
+- Android Studio or Xcode for building and running the app on an emulator or physical device
 
-# production mode
-$ npm run start:prod
-```
+### Steps
 
-## Run tests
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/your-username/event-app.git
+   ```
 
-```bash
-# unit tests
-$ npm run test
+2. Navigate into the project directory:
+   ```bash
+   cd event-app
+   ```
 
-# e2e tests
-$ npm run test:e2e
+3. Install the dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-# test coverage
-$ npm run test:cov
-```
+4. Run the app on an emulator or physical device:
+   ```bash
+   npx react-native run-android   # For Android
+   npx react-native run-ios       # For iOS
+   ```
 
-## Deployment
+## Usage
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+Once the app is running, you can:
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+- Sign up or log in using Firebase authentication.
+- Browse a list of upcoming events based on your location and interests.
+- RSVP to events and receive reminders.
+- View event locations and directions on the map.
+- Switch between light and dark themes for better readability.
 
-```bash
-$ npm install -g mau
-$ mau deploy
-```
+## Contributing
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+We welcome contributions to improve this project! If you'd like to contribute, follow these steps:
 
-## Resources
-
-Check out a few resources that may come in handy when working with NestJS:
-
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
-
-## Support
-
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
-
-## Stay in touch
-
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-name`).
+3. Make your changes and commit them (`git commit -am 'Add new feature'`).
+4. Push your branch (`git push origin feature-name`).
+5. Open a pull request.
 
 ## License
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
-"# eventat-backend" 
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Acknowledgments
+
+- Thanks to the [React Native](https://reactnative.dev/) community for making mobile development more accessible.
+- Thank you to [Firebase](https://firebase.google.com/) for providing the authentication and database solutions.
+- Special thanks to the open-source contributors of the libraries used in this project.
